@@ -17,9 +17,8 @@ func (sp *storyPage) readStory() {
 
 // we make sure to operate on the pointer of storyPatge instead of just storyPage so that we have pass by reference instead of pass by value
 func (sp *storyPage) addPage(s string) {
-	newPage := new(storyPage)
+	newPage := &storyPage{s, nil}
 	newPage.nextPage = sp.nextPage
-	newPage.text = s
 	sp.nextPage = newPage
 }
 
@@ -27,8 +26,7 @@ func (sp *storyPage) appendPage(s string) {
 	for sp.nextPage != nil {
 		sp = sp.nextPage
 	}
-	newPage := new(storyPage)
-	newPage.text = s
+	newPage := &storyPage{s, nil}
 	sp.nextPage = newPage
 }
 
